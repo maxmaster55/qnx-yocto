@@ -1,0 +1,3 @@
+# Build output. Recreate with the TEMPLATECONF line in README.md -- conf/ holds
+# absolute paths to this machine's SDP, so it is deliberately not tracked.
+/build*/

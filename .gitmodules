@@ -1,0 +1,16 @@
+[submodule "poky"]
+	path = poky
+	url = git@github.com:yoctoproject/poky.git
+	branch = scarthgap
+[submodule "meta-qnx"]
+	path = meta-qnx
+	url = git@github.com:maxmaster55/meta-qnx.git
+	branch = main
+[submodule "meta-qnx-hyp"]
+	path = meta-qnx-hyp
+	url = git@github.com:maxmaster55/meta-qnx-hyp.git
+	branch = main
+[submodule "meta-qnx-guest"]
+	path = meta-qnx-guest
+	url = git@github.com:maxmaster55/meta-qnx-guest.git
+	branch = main
