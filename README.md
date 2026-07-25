@@ -6,6 +6,8 @@ here is a submodule; nothing else is needed.
 | Path | What |
 | --- | --- |
 | `poky/` | Yocto, pinned to `scarthgap` (the only branch cloned) |
+| `meta-openembedded/` | `meta-oe` + `meta-python`, required by meta-qt6 |
+| `meta-qt6/` | stock Qt 6.10.3, cross-compiled for QNX via bbappends |
 | `meta-qnx/` | the mechanism: classes, the aarch64le machine, examples |
 | `meta-qnx-hyp/` | Raspberry Pi 5 hypervisor **host** — images, disk, board apps |
 | `meta-qnx-guest/` | the **guest** image, its rootfs, and Qt |
@@ -68,6 +70,7 @@ bitbake qnx-ifs-hello      # a bootable IFS -- start here
 bitbake qnx-host-image     # hypervisor host IFS for the Pi 5
 bitbake qnx-guest-image    # the guest
 bitbake qnx-host-disk      # flashable SD image carrying both
+bitbake qtbase qtdeclarative  # Qt 6.10.3 for QNX, from stock meta-qt6
 ```
 
 Inspect what you built without hardware:

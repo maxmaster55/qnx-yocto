@@ -14,3 +14,11 @@
 	path = meta-qnx-guest
 	url = git@github.com:maxmaster55/meta-qnx-guest.git
 	branch = main
+[submodule "meta-openembedded"]
+	path = meta-openembedded
+	url = git@github.com:openembedded/meta-openembedded.git
+	branch = scarthgap
+[submodule "meta-qt6"]
+	path = meta-qt6
+	url = https://code.qt.io/yocto/meta-qt6.git
+	branch = 6.10
