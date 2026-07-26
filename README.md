@@ -37,8 +37,7 @@ TEMPLATECONF=$PWD/meta-qnx/conf/templates/default source poky/oe-init-build-env 
 ```
 
 > Use an **absolute** path for `TEMPLATECONF`. `oe-init-build-env` resolves a
-> relative one against poky rather than the current directory, so the short form
-> in meta-qnx's own getting-started guide fails in this layout.
+> relative one against poky rather than the current directory.
 
 Then in `build-qnx/conf/bblayers.conf`, add the two project layers next to
 `meta-qnx` (the template only wires `meta-qnx`):
