@@ -60,6 +60,12 @@ LICENSE_FLAGS_ACCEPTED += "qnx-non-commercial"
 the RPi5 BSP binaries. Recipes needing it are skipped cleanly when it is unset,
 so a build without it still works — it just produces fewer targets.
 
+The generated `local.conf` lists the rest, commented out, with the wifi
+credentials file (`QNX_HOST_CONF_WIFI`) and the board's network addresses among
+them. [configuration.md](meta-qnx/docs/configuration.md) has the full set —
+including the handful of values that appear in more than one file and have to
+agree, which is where these images have historically gone wrong.
+
 ## Build
 
 ```bash
@@ -85,13 +91,25 @@ All in `meta-qnx/docs/`:
 
 - [showcase.md](meta-qnx/docs/showcase.md) — a tour of every feature
 - [getting-started.md](meta-qnx/docs/getting-started.md) — setup in detail
+- [configuration.md](meta-qnx/docs/configuration.md) — every setting, where it
+  lives, and **which values have to agree with each other**
+- [adding-a-recipe.md](meta-qnx/docs/adding-a-recipe.md) — new software into an
+  image, end to end
 - [where-things-come-from.md](meta-qnx/docs/where-things-come-from.md) — the four
   sources QNX components arrive through
-- [cookbook.md](meta-qnx/docs/cookbook.md) · [variables.md](meta-qnx/docs/variables.md)
+- [cookbook.md](meta-qnx/docs/cookbook.md) — recipe text per build system ·
+  [variables.md](meta-qnx/docs/variables.md) — full variable reference
 - [sdp.md](meta-qnx/docs/sdp.md) — managing the SDP
 
 ## Status
 
-Everything is verified statically — `dumpifs`, `fdisk`, ELF checks, boot-header
-comparison against the makefile-built image. **Nothing has been run on hardware
-yet.**
+Runs on a Raspberry Pi 5. The host boots, Screen comes up on the panel, and
+`gles2-gears` renders at 60 FPS; SPI publishes `/dev/io-spi`; the guest launches
+under `qvm` with its paravirtual GPU.
+
+Wifi is the one part still being brought up — the driver, firmware and
+configuration are all in place and match QNX's own reference, but it has not
+associated yet.
+
+Everything is also verified statically — `dumpifs`, `fdisk`, ELF checks, and
+boot-header comparison against the makefile-built image.
