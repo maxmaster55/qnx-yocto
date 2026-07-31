@@ -108,12 +108,20 @@ All in `meta-qnx/docs/`:
 ## Status
 
 Runs on a Raspberry Pi 5. The host boots, Screen comes up on the panel, and
-`gles2-gears` renders at 60 FPS; SPI publishes `/dev/io-spi`; the guest launches
-under `qvm` with its paravirtual GPU.
+`gles2-gears` renders at 60 FPS; SPI publishes `/dev/io-spi`; the QNX guest
+launches under `qvm` with its paravirtual GPU.
 
-Wifi is the one part still being brought up — the driver, firmware and
-configuration are all in place and match QNX's own reference, but it has not
-associated yet.
+Wifi associates and carries traffic — `bcm0` takes a DHCP lease and dhcpcd
+writes the resolver.
+
+The **Linux guest boots too**, as guest-2. That needs hypervisor 8.0.4 or newer:
+the 8.0 `qvm` accepts only `vdev gic / version 3`, and this board is GICv2, so
+the guest panicked bringing up an interrupt controller it could not drive. With
+8.0.4 Update 1 and `QNX_LINUX_GUEST_GIC_VERSION = "2"` it comes up.
+
+Changing the hypervisor means changing the SDP baseline underneath it, which is
+not a one-package upgrade — [sdp.md](meta-qnx/docs/sdp.md#changing-a-major-component-install-into-a-fresh-sdp)
+has the procedure and the two ways to get it wrong.
 
 Everything is also verified statically — `dumpifs`, `fdisk`, ELF checks, and
 boot-header comparison against the makefile-built image.
