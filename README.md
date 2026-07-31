@@ -81,9 +81,13 @@ bitbake qtbase qtdeclarative  # Qt 6.10.3 for QNX, from stock meta-qt6
 Inspect what you built without hardware:
 
 ```bash
-bitbake -c dumpifs qnx-ifs-hello
-less build-qnx/tmp/deploy/images/qnx-aarch64le/qnx-host-image.build
+bitbake -c dumpifs   qnx-ifs-hello    # what ended up in the image
+bitbake -c dumpbuild qnx-ifs-hello    # the build file that asked for it
 ```
+
+`dumpbuild` works on any IFS, rootfs or disk target and does not build the image
+first, so it also works when the build is what failed. When something is missing
+from an image, that file is where the reason is.
 
 ## Documentation
 
